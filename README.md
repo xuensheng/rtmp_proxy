@@ -12,26 +12,29 @@
 
     https://ffmpeg.org/releases/ffmpeg-3.0.5.tar.gz
 	执行完./configure后，需要修改配置文件：
+	<pre><code>
 	config.mak: HAVE_TERMIOS_H=yes -->  !HAVE_TERMIOS_H=yes
 	config.h: #define HAVE_TERMIOS_H 1 --> #define HAVE_TERMIOS_H 0
+	</code></pre>
 
     打上如下补丁：
+	<pre><code>
+	diff --git a/ffmpeg-3.0.5-org/ffmpeg.c b/ffmpeg-3.0.5/ffmpeg.c
+	index 4d1a972..926494b 100644
+	--- a/ffmpeg-3.0.5-org/ffmpeg.c
+	+++ b/ffmpeg-3.0.5/ffmpeg.c
+	@@ -1659,7 +1659,7 @@ static void print_report(int is_last_report, int64_t timer_start, int64_t cur_ti
+	     if (print_stats || is_last_report) {
+		 const char end = is_last_report ? '\n' : '\r';
+		 if (print_stats==1 && AV_LOG_INFO > av_log_get_level()) {
+	\-            fprintf(stderr, "%s    %c", buf, end);
+	\+            fprintf(stderr, "%s    %c", buf, '\n');
+		 } else
+		     av_log(NULL, AV_LOG_INFO, "%s    %c", buf, end);
 
-diff --git a/ffmpeg-3.0.5-org/ffmpeg.c b/ffmpeg-3.0.5/ffmpeg.c
-index 4d1a972..926494b 100644
---- a/ffmpeg-3.0.5-org/ffmpeg.c
-+++ b/ffmpeg-3.0.5/ffmpeg.c
-@@ -1659,7 +1659,7 @@ static void print_report(int is_last_report, int64_t timer_start, int64_t cur_ti
-     if (print_stats || is_last_report) {
-         const char end = is_last_report ? '\n' : '\r';
-         if (print_stats==1 && AV_LOG_INFO > av_log_get_level()) {
--            fprintf(stderr, "%s    %c", buf, end);
-+            fprintf(stderr, "%s    %c", buf, '\n');
-         } else
-             av_log(NULL, AV_LOG_INFO, "%s    %c", buf, end);
 
-
-	然后 make & make install
+		然后 make & make install
+	</code></pre>
 
 4. 配置 rtmp_proxy.cfg 文件
     
