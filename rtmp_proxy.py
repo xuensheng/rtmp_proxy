@@ -44,6 +44,8 @@ class RtmpProxy:
         self.bucket = oss2.Bucket(oss2.Auth(self.oss_access_id, self.oss_access_key), self.oss_endpoint, self.oss_bucket_name)
 
     def set_logger(self):
+        if not os.path.isdir('logs'):
+            os.mkdir('logs')
         self.access_logger = init_logger('access', 'logs/rtmp_access.log', fmt = '%(asctime)-15s|%(message)s')
         self.logger = init_logger('', 'logs/rtmp_proxy.log', self.get_loglevel())
 
