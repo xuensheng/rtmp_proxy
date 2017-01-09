@@ -39,6 +39,7 @@ class Moniotor:
                 (time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())), 
                  self.options.exec_name,
                  get_local_ip()))
+            return
 
         old_pid = self.get_pid_from_file()
         if old_pid == "":

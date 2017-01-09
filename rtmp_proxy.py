@@ -36,7 +36,7 @@ class RtmpProxy:
         #初始化 msn account, queue
         self.mns_account = Account(self.mns_endpoint, self.mns_access_id, self.mns_access_key)
         self.mns_queue = self.mns_account.get_queue(self.mns_queue_name)
-        self.mns_queue.set_encoding(True)
+        self.mns_queue.set_encoding(False)
 
         self.publish_count = 0
         self.publish_mutex = threading.Lock()
