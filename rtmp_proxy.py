@@ -175,7 +175,7 @@ class RtmpProxy:
                         logging.debug("channel[%s]: %s" % (channel_id, proc.stdout.readline()))
                         last_report_time = time.time()
                     except:
-                        if time.time() - last_report_time > 60:
+                        if time.time() - last_report_time > 10:
                             #ffmpeg may be hungup, terminate it.
                             proc.terminate()
                         time.sleep(1)
