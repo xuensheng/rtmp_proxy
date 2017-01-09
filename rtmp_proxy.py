@@ -36,7 +36,7 @@ class RtmpProxy:
         #初始化 msn account, queue
         self.mns_account = Account(self.mns_endpoint, self.mns_access_id, self.mns_access_key)
         self.mns_queue = self.mns_account.get_queue(self.mns_queue_name)
-        self.mns_queue.set_encoding(False)
+        self.mns_queue.set_encoding(True)
 
         self.publish_count = 0
         self.publish_mutex = threading.Lock()
@@ -175,7 +175,7 @@ class RtmpProxy:
                         logging.debug("channel[%s]: %s" % (channel_id, proc.stdout.readline()))
                         last_report_time = time.time()
                     except:
-                        if time.time() - last_report_time > 60:
+                        if time.time() - last_report_time > 10:
                             #ffmpeg may be hungup, terminate it.
                             proc.terminate()
                         time.sleep(1)
