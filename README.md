@@ -41,18 +41,19 @@
 5. 运行： python rtmp_proxy.py &
 
 6. 配置日志监控： 
-
-    网址：https://sls.console.aliyun.com/#/
-    日志位置： logs/rtmp_access.log
+    监控推流的情况
+    阿里云日志服务网址：https://sls.console.aliyun.com/#/
+    访问日志位置： logs/rtmp_access.log
     日志格式：time|url|status|error_message
 
 7. 配置其他监控：
 
-    执行 crontab -e 增加定时任务, 每十分钟执行一次：
+    执行 crontab -e 增加定时任务, 每十分钟执行一次, 例如：
+    */10 * * * * cd /home/rtmp_proxy; python rtmp_proxy_monitor.py --exec_name rtmp_proxy.py &> /dev/null &
 
-    */10 * * * * cd /xxxx/rtmp_proxy; python rtmp_proxy_monitor.py --exec_name rtmp_proxy.py &> /dev/null &
 
-
-6. 查看日志：logs/rtmp_proxy.log  logs/rtmp_access.log
+6. 查看日志：
+运行日志：logs/rtmp_proxy.log  
+访问日志：logs/rtmp_access.log
 
 
