@@ -27,8 +27,8 @@
 	     if (print_stats || is_last_report) {
 		 const char end = is_last_report ? '\n' : '\r';
 		 if (print_stats==1 && AV_LOG_INFO > av_log_get_level()) {
-	\-            fprintf(stderr, "%s    %c", buf, end);
-	\+            fprintf(stderr, "%s    %c", buf, '\n');
+	-            fprintf(stderr, "%s    %c", buf, end);
+	+            fprintf(stderr, "%s    %c", buf, '\n');
 		 } else
 		     av_log(NULL, AV_LOG_INFO, "%s    %c", buf, end);
 
