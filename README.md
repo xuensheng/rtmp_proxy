@@ -56,4 +56,7 @@
 运行日志：logs/rtmp_proxy.log  
 访问日志：logs/rtmp_access.log
 
+7. 资源占用：
+以540kbps码率流为例， 单路流占用内存：10MB  CPU: 2~3%
+
 
