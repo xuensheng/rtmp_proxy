@@ -57,6 +57,6 @@
 访问日志：logs/rtmp_access.log
 
 7. 资源占用：
-ECS测试： 以540kbps码率流为例， 单路流占用内存：10MB  CPU: 0.4%
+ECS(实例规格： ecs.xn4.small)测试： 以540kbps码率流为例， 单路流占用内存：10MB  CPU: 0.4%
 
 
